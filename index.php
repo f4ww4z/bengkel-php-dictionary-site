@@ -1,6 +1,7 @@
 <?php
 include "header.php";
 include "navbar.php";
+include "data.php";
 ?>
   <div class="container">
     <h1>Selamat datang di kamus perakaunan!</h1>
@@ -12,10 +13,12 @@ include "navbar.php";
           <div class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix">search</i>
-              <label for="search-term-autocomplete">Search a Term</label>
-              <input type="text" id="search-term-autocomplete"
+              <label for="search-term-autocomplete">Cari Istilah...</label>
+              <input type="text"
+                     id="search-term-autocomplete"
                      name="search-term"
-                     class="autocomplete-content">
+                     class="autocomplete-content"
+                     autocomplete="off">
             </div>
           </div>
         </form>
@@ -25,14 +28,14 @@ include "navbar.php";
 
   <script type="text/javascript">
     $(document).ready(() => {
-      console.log("document is ready");
+      // load demo data
+      const terms = Object(<?php echo json_encode(load_demo_data())?>);
+      console.log(terms);
+
       $('#search-term-autocomplete').autocomplete({
-        data: {
-          "Apple": null,
-          "Microsoft": null,
-          "Google": "https://placehold.it/250x250",
-        },
+        data: terms,
       });
+
     });
   </script>
 

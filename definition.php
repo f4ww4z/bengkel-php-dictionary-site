@@ -1,35 +1,35 @@
 <?php
-
-class Term
-{
-  // Properties
-  public $term;
-  public $definition;
-
-  // Constructor with 2 parameters
-  function __construct($term, $definition)
-  {
-    $this->term = $term;
-    $this->definition = $definition;
-  }
-}
-
-function load_demo_data()
-{
-  return array(
-          "Akaun Nyata" => "Akaun yang disediakan untuk menunjukkan semua kos yang terlibat di dalam pengeluaran sesuatu keluaran pada akhir tempoh perakaunan.",
-          "Dokumen Sumber" => "Duti yang dikenakan pada barang yang diimport."
-  );
-}
-
-
 include "header.php";
 include "navbar.php";
+include "data.php";
+
+$data = load_demo_data();
+$searched_term = $_POST['search-term'];
 ?>
 <div class="container">
+  <?php if (array_key_exists($searched_term, $data)): ?>
+    <div class="row">
+      <div class="col s12">
+        <h1><?php echo $searched_term ?></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <h6><?php $definition = $data[$searched_term];
+          echo $definition ?></h6>
+
+      </div>
+    </div>
+  <?php else: ?>
+    <div class="row">
+      <div class="col s12">
+        <h2>Tidak ditemui istilah '<?php echo $searched_term ?>' dalam kamus.</h2>
+      </div>
+    </div>
+  <?php endif; ?>
   <div class="row">
     <div class="col s12">
-      <h1>You searched for '<?php echo $_POST['search-term'] ?>'</h1>
+      <a href="index.php" class="waves-effect waves-light btn">Balik</a>
     </div>
   </div>
 </div>
