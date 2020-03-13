@@ -1,9 +1,8 @@
-<nav>
-  <div class="nav-wrapper">
-    <a href="index.php" class="brand-logo" style="margin-left: 16px;">Kamus Perakaunan</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="sass.html">Dictionary</a></li>
-      <li><a href="badges.html">Thesaurus</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="bg-darkCobalt fg-white" data-role="appbar" data-expand-point="md">
+  <a href="index.php" class="brand">Kamus Perakaunan</a>
+  <ul class="app-bar-menu ml-auto">
+    <li><a href="index.php">Home</a></li>
+    <li><a href="index.php">Kamus</a></li>
+    <li><a href="synonym.php">Sinonim</a></li>
+  </ul>
+</div>

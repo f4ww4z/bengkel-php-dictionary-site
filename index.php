@@ -4,39 +4,28 @@ include "navbar.php";
 include "data.php";
 ?>
   <div class="container">
-    <h1>Selamat datang di kamus perakaunan!</h1>
+    <div class="pt-10"></div>
+    <h1 class="mb-10">Selamat datang di kamus perakaunan!</h1>
 
     <!--    Autocomplete form for searching terms -->
-    <div class="row">
-      <div class="col s12">
-        <form action="definition.php" method="post">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">search</i>
-              <label for="search-term-autocomplete">Cari Istilah...</label>
-              <input type="text"
-                     id="search-term-autocomplete"
-                     name="search-term"
-                     class="autocomplete-content"
-                     autocomplete="off">
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+    <form class="d-flex flex-wrap" action="definition.php" method="post">
+      <a id="search-term-index"></a>
+
+      <button type="submit"
+              class="w-100 w-25-md mt-2 mt-0-md ml-2-md button primary">
+        Cari
+      </button>
+    </form>
   </div>
 
   <script type="text/javascript">
-    $(document).ready(() => {
-      // load demo data
-      const terms = Object(<?php echo json_encode(load_demo_data())?>);
-      console.log(terms);
+    // load demo data
+    const terms = Object(<?php echo json_encode(array_keys(load_demo_data())) ?>);
+    let termsToString = terms.toString();
+    termsToString = termsToString.replace(/,/g, ', ');
+    console.log(termsToString);
 
-      $('#search-term-autocomplete').autocomplete({
-        data: terms,
-      });
-
-    });
+    $("<input class=\"w-100 w-50-md\" type=\"text\" data-role=\"input\" name=\"search-term\" placeholder=\"Cari istilah...\" data-autocomplete=\"" + termsToString + "\">")
+      .insertAfter('#search-term-index');
   </script>
-
 <?php include "footer.php"; ?>
